@@ -16,7 +16,6 @@ for i in range(0,b,1):
     for j in range(0,b,1):
         print(mat[i][j],end=" ")
     print()
-# import random
 from random import *
 
 
@@ -30,8 +29,6 @@ def fitness(orig, sort):
     return fitness
 
 
-# ra= namedtuple()
-# while(convergence):
 class crossover(object):
 
     def __init__(self,parent1,parent2):
@@ -64,15 +61,8 @@ class mutation(object):
     def __init__(self,child):
         self.child = child
     def domutation(self,child):
-        # from random import *
         mut_crossover = randint(0, len(child[0][0]) - 2)
-        # print("mut_crossover ",mut_crossover)
-        # for i in range(0,len(child[0]),1):
-        #     for j in range(0,len(child[0][0]),1):
-        #         shuffle(child[i][j])
-        #         # child[i][j] = y
         shuffle(child[:][:][mut_crossover:len(child[0][0])])
-
         return child
 rescount = 0
 resultant = [[]]
@@ -83,44 +73,30 @@ while(rescount<=10):
                 ra = []
                 for i in range(1, b, 1):
                     ra.append(random())
-                # print(ra)
                 import numpy
                 ra = numpy.array(ra)
 
                 sort_index = numpy.argsort(ra)
-                # print(sort_index)
-
-
-
-
-                # print(fitness(mat, sort_index))
-                # genindex = list(sort_index).insert(0, 0)
                 first = randint(0, b - 2)
                 last = randint(first, b - 1)
 
-                # print(first)
+                
                 arr1 = []
                 for i in range(first, last, 1):
                     arr1.append(i)
                 arr2 = [x for x in range(0, b, 1) if x not in arr1]
-                # print(arr1)
-                # print(arr2)
-                # print(genindex)
+                
                 newarr = [x+1 for x in sort_index]
-                # newarr.insert(0,0)
-                # print(newarr)
-
+                
                 myarr.append(newarr)
                 count = count+1
-                # if(count%2 ==0):
+                
 
             perarr =[]
             for i in range(0,100,1):
                 score = fitness(mat,myarr[i])
                 perarr.append(score)
-                # print(myarr[i])
-            # print(perarr)
-            # print(min(perarr))
+                
             li=[]
             original_arr =[]
             myoriginalchild=[]
@@ -128,44 +104,17 @@ while(rescount<=10):
                 if(perarr[i]==min(perarr)):
                     li.append(i)
                     original_arr.append(myarr[i])
-            # print(li)
+          
             print("original array ",original_arr)
             for i in range(0,len(original_arr)-1,1):
                 mychild = crossover(original_arr[i],original_arr[i+1])
                 myoriginalchild.append(mychild.getchild(original_arr[i],original_arr[i+1]))
-            # print("myoriginal child ",myoriginalchild)
-            # print(myoriginalchild[0][0])
+            
             t= myoriginalchild
-            # print(len(myoriginalchild[0]))
-            # print(len(myoriginalchild))
-            # from random import *
-            # mut_crossover = randint(0,len(myoriginalchild[0][0])-2)
-            # j=0
-            # print(len(myoriginalchild[0][0]))
-            # import random
-            # for i in range(mut_crossover,len(myoriginalchild[0][0]),1):
-            #     print("HI")
-            #
-            #     random.shuffle(myoriginalchild[j][0][mut_crossover:len(myoriginalchild[0][0])])
-            #     random.shuffle(myoriginalchild[j][1][mut_crossover:len(myoriginalchild[0][0])])
-            #     j = j+1
-            #
-            # print(myoriginalchild)
-            # print("len(myoriginalchild[0][0])",len(myoriginalchild[0][0]))
-            # print("mut_crossover",mut_crossover)
-            # print("myoriginalchild[0][0][mut_crossover:len(myoriginalchild[0][0])] before",myoriginalchild[0][mut_crossover:len(myoriginalchild[0][0])])
-            # from random import shuffle
-            # shuffle((myoriginalchild[0][mut_crossover:len(myoriginalchild[0][0])]))
-            # print("myoriginalchild[0][0][mut_crossover:len(myoriginalchild[0][0])] after",myoriginalchild[0][0][mut_crossover:len(myoriginalchild[0][0])])
-            #
-            # print("condition",myoriginalchild==t)
-            # print(len(original_arr))
-                # arr3 = []
-                # for i in range(0,b,1):
+            
             mutation_func = mutation(myoriginalchild)
             new_mut = mutation_func.domutation(myoriginalchild)
-            # print("new mutation",new_mut)
-            # print(new_mut==t)
+            
             result = []
             myfit = 30238293
             for i in range(0,len(new_mut),1):
